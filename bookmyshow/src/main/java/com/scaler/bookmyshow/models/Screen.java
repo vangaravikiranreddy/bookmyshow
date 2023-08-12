@@ -3,7 +3,6 @@ package com.scaler.bookmyshow.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -16,7 +15,12 @@ public class Screen extends BaseModel{
   @OneToMany
   private List<Seat> seats;
 
+  @ManyToOne
+  private Theater theater;
+
   @Enumerated(EnumType.ORDINAL)
-  @ElementCollection             // create a mapping table -> Screen,features
+  @ElementCollection
+ // @Enumerated(EnumType.STRING)
+//  @ElementCollection             // create a mapping table -> Screen,features
   private List<Feature> features;
 }

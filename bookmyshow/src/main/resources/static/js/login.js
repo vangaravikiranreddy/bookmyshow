@@ -21,9 +21,10 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         .then(data => {
             // Handle the response from the backend API
 
-            console.log('API Response:', data.validUser);
-            const userAuthenticated = data.validUser;
-            if (userAuthenticated) {
+            console.log('API Response:', data);
+            const userAuthenticated = data.responseStatus;
+            if (userAuthenticated == "SUCCESS") {
+                console.log('valid Password')
                 window.location.href = '../html/movie.html'; // Redirect to the movies page
             } else {
                 console.log('Invalid Password')

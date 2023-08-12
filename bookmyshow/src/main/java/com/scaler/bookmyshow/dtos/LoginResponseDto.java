@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SignUpResponseDto {
-
+public class LoginResponseDto {
     private ResponseStatus responseStatus;
-
     private Long userId;
 }
