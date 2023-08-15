@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class MovieController {
     private static final Logger logger = Logger.getLogger(UserController.class.getName());
 
-    private MovieServie movieServie;
+    private final MovieServie movieServie;
 
     @Autowired
     public MovieController(MovieServie movieServie) {

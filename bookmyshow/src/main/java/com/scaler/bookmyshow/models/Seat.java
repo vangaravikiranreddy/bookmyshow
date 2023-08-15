@@ -12,6 +12,9 @@ public class Seat extends BaseModel {
     private String number;
 
     @ManyToOne
+    private Screen screen;
+
+    @ManyToOne
     private SeatType seatType;
 
     private int rowVal;

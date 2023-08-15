@@ -12,8 +12,8 @@ import java.util.List;
 public class Screen extends BaseModel{
   private String name;
 
-  @OneToMany
-  private List<Seat> seats;
+ /* @OneToMany
+  private List<Seat> seats; */
 
   @ManyToOne
   private Theater theater;
