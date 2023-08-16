@@ -1,18 +1,16 @@
 package com.scaler.bookmyshow.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.scaler.bookmyshow.dtos.SeatResponse;
 import com.scaler.bookmyshow.dtos.ShowResponse;
 import com.scaler.bookmyshow.dtos.ShowResponseListDto;
+import com.scaler.bookmyshow.models.Movie;
+import com.scaler.bookmyshow.repositories.MovieRepository;
 import com.scaler.bookmyshow.repositories.ShowInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,19 +19,42 @@ public class ShowServiceImpl implements ShowService{
     private static final Logger logger = Logger.getLogger(ShowServiceImpl.class.getName());
     private final ShowInfoRepository showInfoRepository;
 
+    private final MovieRepository movieRepository;
+
+    private String movieUrl;
+
     @Autowired
-    public ShowServiceImpl(ShowInfoRepository showInfoRepository) {
+    public ShowServiceImpl(ShowInfoRepository showInfoRepository, MovieRepository movieRepository) {
         this.showInfoRepository = showInfoRepository;
+        this.movieRepository = movieRepository;
+    }
+
+    public String getMovieUrl(Long id) throws Exception {
+        Optional<Movie> movie = movieRepository.findById(id);
+
+        if (movie.isEmpty()) {
+            throw new Exception();
+        }
+        Movie movie1 = movie.get();
+
+        return movie1.getImageUrl();
     }
 
     @Override
     public  ShowResponseListDto getShows(long id) {
         logger.log(Level.INFO, "Start of getShows : ShowServiceImpl"+id );
 
+        try {
+            movieUrl = getMovieUrl(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         ShowResponseListDto response = new ShowResponseListDto();
 
         List<ShowResponse> showResponses = new ArrayList<>();
 
+        // fetch the list of shows using movie_id
         List<Object[]> objects = showInfoRepository.getShowDetails(id);
 
         HashSet<Long> hashSet = new HashSet<>();
@@ -74,6 +95,7 @@ public class ShowServiceImpl implements ShowService{
                   seatResponses.add(seatResponse);
               }
           }
+          response.setMovieUrl(movieUrl);
           response.setShows(showResponses);
       } catch (Exception e) {
           response.setErrorMsg(e.getMessage());
