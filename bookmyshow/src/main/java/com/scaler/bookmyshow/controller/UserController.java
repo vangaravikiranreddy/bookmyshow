@@ -2,9 +2,7 @@ package com.scaler.bookmyshow.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.scaler.bookmyshow.dtos.LoginRequestDto;
-import com.scaler.bookmyshow.dtos.LoginResponseDto;
-import com.scaler.bookmyshow.dtos.ResponseStatus;
+import com.scaler.bookmyshow.dtos.*;
 import com.scaler.bookmyshow.models.User;
 import com.scaler.bookmyshow.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ import java.util.logging.Logger;
 @Controller
 public class UserController {
     private static final Logger logger = Logger.getLogger(UserController.class.getName());
-    private  UserService userService;
+    private   UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -58,6 +56,29 @@ public class UserController {
 
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("signup")
+    @ResponseBody
+    public ResponseEntity<SignUpResponseDto> signUp(@RequestBody SignUpRequestDto request) {
+
+        logger.log(Level.INFO, "Start of sign up ");
+
+        SignUpResponseDto response = new SignUpResponseDto();
+
+        try {
+            String name = request.getName();
+            String email = request.getEmail();
+            String password = request.getPassword();
+
+            long id = userService.signUp(name, email, password);
+            response.setId(id);
+        }catch (Exception e) {
+            logger.log(Level.INFO,e.getMessage());
+            response.setErrMsg(e.getMessage());
+        }
+        logger.log(Level.INFO, "end of signUp ");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
 

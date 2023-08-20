@@ -13,6 +13,7 @@ public class SecurityConfig {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/login").permitAll() // Allow unrestricted access to /login
+                .requestMatchers("/signup").permitAll() // Allow unrestricted access to /signup
                 .requestMatchers("/movies").permitAll() // Allow unrestricted access to /movies
                 .requestMatchers("/shows").permitAll() // Allow unrestricted access to /shows
                 .anyRequest().authenticated()

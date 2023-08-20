@@ -40,14 +40,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public User signUp(String email, String password) {
-        Optional<User> userOptional = userRepository.findByEmail(email);
-
-        if (userOptional.isEmpty()) {
-            throw new RuntimeException();
-        }
+    public long signUp(String name, String email, String password) {
 
         User user = new User();
+        user.setName(name);
         user.setEmail(email);
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -57,7 +53,7 @@ public class UserServiceImpl implements UserService{
 
         User savedUser = userRepository.save(user);
 
-        return savedUser;
+        return savedUser.getId();
     }
 
 }
