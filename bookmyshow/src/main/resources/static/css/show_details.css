@@ -1,0 +1,66 @@
+/* Style for the details section */
+#detailsSection {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style for the image */
+.image {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+.movie-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Style for the show details */
+.show {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.show p {
+    margin: 5px 0;
+}
+
+/* Style for the seat details */
+.seat_row {
+    background-color: #f7f7f7;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.show_id {
+    text-align: center;
+}
+.show_list {
+    padding: 0px;
+}
+/* Add borders to table cells */
+.seat_table {
+    border-collapse: collapse; /* Combine borders into single lines */
+    width: 100%; /* Adjust as needed */
+}
+.seat_table th, .seat_table td {
+    border: 1px solid black; /* Add a border to each cell */
+    padding: 8px; /* Add some padding for spacing */
+    text-align: center; /* Center-align text within cells */
+}
+/* Apply hover effect to non-header rows within the table */
+.seat_table tr:not(:first-child):hover {
+    background-color: #e0e0e0; /* Change to your desired hover color */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+.show_seats {
+    background-color: #fff;
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

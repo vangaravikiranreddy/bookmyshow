@@ -1,39 +1,38 @@
-body {
+/* Reset default margin and padding for list elements */
+ul {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-.movies-section {
-    text-align: center;
-    padding: 20px;
-}
-
-.movies-heading {
-    font-size: 24px;
-}
-
-.movies-list {
     list-style: none;
+}
+
+/* Style for the movies list */
+.movies-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
+    flex-wrap: wrap; /* Allows images to wrap to the next line if necessary */
+    justify-content: space-between; /* Distribute items evenly */
+    gap: 20px; /* Gap between movie items */
 }
 
+/* Style for each movie item */
 .movie-item {
-    width: calc(33.33% - 20px);
-    margin: 10px;
-    text-align: center;
+    width: calc(33.33% - 20px); /* Adjust width as needed, considering the gap */
+    margin-bottom: 20px; /* Gap between rows */
 }
 
+/* Center movie image */
 .movie-image {
-    max-width: 40px;
-    height: auto;
-    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
 }
 
+/* Style for movie title */
 .movie-title {
+    display: block;
+    text-align: center;
+    font-weight: bold;
     margin-top: 10px;
-    font-size: 6px;
+}
+.movies-heading {
+    text-align: center;
 }
