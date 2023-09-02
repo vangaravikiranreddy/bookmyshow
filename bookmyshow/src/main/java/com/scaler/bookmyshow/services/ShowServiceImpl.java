@@ -75,10 +75,11 @@ public class ShowServiceImpl implements ShowService{
                   List<SeatResponse> seatResponses = new ArrayList<>();
                   // Setting Seat values
                   SeatResponse seatResponse = new SeatResponse();
-                  seatResponse.setRowVal((int) r[6]);
-                  seatResponse.setColVal((int) r[7]);
-                  seatResponse.setSeatNumber((String) r[8]);
-                  seatResponse.setSeatName((String) r[9]);
+                  seatResponse.setSeatId((long) r[6]);
+                  seatResponse.setRowVal((int) r[7]);
+                  seatResponse.setColVal((int) r[8]);
+                  seatResponse.setSeatNumber((String) r[9]);
+                  seatResponse.setSeatName((String) r[10]);
                   seatResponses.add(seatResponse);
                   showResponse.setSeats(seatResponses);
                   showResponses.add(showResponse);
@@ -88,10 +89,11 @@ public class ShowServiceImpl implements ShowService{
                   ShowResponse showResponse = showResponses.get(lastIndex);
                   List<SeatResponse> seatResponses = showResponse.getSeats();
                   SeatResponse seatResponse = new SeatResponse();
-                  seatResponse.setRowVal((int) r[6]);
-                  seatResponse.setColVal((int) r[7]);
-                  seatResponse.setSeatNumber((String) r[8]);
-                  seatResponse.setSeatName((String) r[9]);
+                  seatResponse.setSeatId((long) r[6]);
+                  seatResponse.setRowVal((int) r[7]);
+                  seatResponse.setColVal((int) r[8]);
+                  seatResponse.setSeatNumber((String) r[9]);
+                  seatResponse.setSeatName((String) r[10]);
                   seatResponses.add(seatResponse);
               }
           }

@@ -28,7 +28,7 @@ public class PriceCalculatorImpl implements PriceCalculator {
         //2.Get SeatType for all seats
         for (ShowSeat showSeat : seats) {
             for (ShowSeatType showSeatType : showSeatTypes) {
-                if (showSeat.getSeat().equals(showSeatType.getSeatType())) {
+                if (showSeat.getSeat().getSeatType().equals(showSeatType.getSeatType())) {
                     amount += showSeatType.getPrice();
                     break;
                 }

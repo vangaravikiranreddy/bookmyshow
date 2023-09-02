@@ -16,6 +16,7 @@ public class SecurityConfig {
                 .requestMatchers("/signup").permitAll() // Allow unrestricted access to /signup
                 .requestMatchers("/movies").permitAll() // Allow unrestricted access to /movies
                 .requestMatchers("/shows").permitAll() // Allow unrestricted access to /shows
+                .requestMatchers("/book").permitAll() // Allow unrestricted access to /shows
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().disable();

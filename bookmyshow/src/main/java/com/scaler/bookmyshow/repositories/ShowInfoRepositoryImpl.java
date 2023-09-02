@@ -16,11 +16,11 @@ public class ShowInfoRepositoryImpl implements ShowInfoRepository{
 
 
             String sql = "SELECT s.show_id, s.start_time, s.end_time, s.screen_name, s.theater_name, s.region_name, " +
-                    "s.row_val, s.col_val, s.number AS seat_number, st.name AS seat_name " +
+                    "s.seat_id, s.row_val, s.col_val, s.number AS seat_number, st.name AS seat_name " +
                     "FROM bookmyshow.seat_type st " +
                     "JOIN ( " +
                     "    SELECT sa.show_id, sa.start_time, sa.end_time, sa.screen_name, sa.theater_name, " +
-                    "           sa.region_name, s.seat_type_id, s.row_val, s.col_val, s.number " +
+                    "           sa.region_name, s.id as seat_id, s.seat_type_id, s.row_val, s.col_val, s.number " +
                     "    FROM bookmyshow.seat s " +
                     "    JOIN ( " +
                     "        SELECT sc.id AS screen_id, cte.id AS show_id, cte.start_time, cte.end_time, " +

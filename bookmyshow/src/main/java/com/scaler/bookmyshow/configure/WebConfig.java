@@ -13,5 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/movies").allowedOrigins("http://localhost:63342");
         registry.addMapping("/shows").allowedOrigins("http://localhost:63342");
         registry.addMapping("/signup").allowedOrigins("http://localhost:63342");
+        registry.addMapping("/book").allowedOrigins("http://localhost:63342");
     }
 }
