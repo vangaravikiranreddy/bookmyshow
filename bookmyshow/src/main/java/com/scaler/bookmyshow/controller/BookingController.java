@@ -41,6 +41,7 @@ public class BookingController {
              response.setBookingId(booking.getId());
              response.setBookedAt(booking.getBookedAt());
              response.setMovieName(booking.getShow().getMovie().getName());
+             response.setMovieImageUrl(booking.getShow().getMovie().getImageUrl());
              response.setScreenNumber(booking.getShow().getScreen().getName());
              response.setTheaterName(booking.getShow().getScreen().getTheater().getName());
              response.setLocatedAt(booking.getShow().getScreen().getTheater().getRegion().getName());

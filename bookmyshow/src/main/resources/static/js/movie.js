@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Get the elements from the template
                 const movieItem = tempContainer.querySelector('.movie-item');
                 const image = tempContainer.querySelector('.movie-image');
-                const movieName = tempContainer.querySelector('.movie-title');
 
                 moviesList.appendChild(movieItem);
 

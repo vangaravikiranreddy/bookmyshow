@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,14 +67,24 @@ public class BookingServiceImpl implements BookingService{
 
         // 4.Check if all seats are available
         // 5. If no, throw error
-        for (ShowSeat showSeat : showSeats) {
+      /*  for (ShowSeat showSeat : showSeats) {
+
+            java.util.Date blockedAt = showSeat.getBlockedAt();
+            Instant blockedInstant = blockedAt.toInstant();
+            Instant currentInstant = Instant.now();
+            Duration duration = Duration.between(blockedInstant, currentInstant);
+
+            System.out.println(showSeat.getShowSeatStatus().equals(ShowSeatStatus.AVAILABLE));
+            System.out.println(showSeat.getShowSeatStatus().equals(ShowSeatStatus.BLOCKED));
+            System.out.println(duration.toMinutes() > 15);
+
             if (!(showSeat.getShowSeatStatus().equals(ShowSeatStatus.AVAILABLE) ||
                     (showSeat.getShowSeatStatus().equals(ShowSeatStatus.BLOCKED) &&
-                            Duration.between(showSeat.getBlockedAt().toInstant(), new Date().toInstant()).toMinutes() > 15
+                            duration.toMinutes() > 15
                     ))) {
                 throw new RuntimeException();
             }
-        }
+        }*/
 
         List<ShowSeat> savedShowSeats = new ArrayList<>();
 

@@ -64,3 +64,36 @@
     border-radius: 5px;
     margin-bottom: 10px;
 }
+/* Added Style for Pop-up */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 10px;
+    background-color: #FFF;
+    border: 2px solid gray;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.popup-content h2 {
+    margin-top: 0;
+    text-align: center;
+}
+.popup-content p {
+    margin: 5px 0;
+}
+.popup-content img {
+    margin: 0;
+    width: 10%;
+    justify-content: center;
+    display: block;
+    width: 38%;
+    margin: 0 auto;
+}
+.popup-content p:first-child {
+    font-weight: bold;
+}
+.popup-content {
+    position: relative;
+}

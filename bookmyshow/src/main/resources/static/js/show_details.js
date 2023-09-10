@@ -27,6 +27,7 @@ fetch(apiUrl, requestOptions)
 
 
 function displayResponse(data) {
+    console.log('User Id: ',userId)
     const responseContainer = document.getElementById('responseContainer');
     responseContainer.innerHTML = ''; // Clear existing content
 
@@ -84,7 +85,6 @@ function displayResponse(data) {
         seat_table.innerHTML = tableHeader;
 
         show.seats.forEach(seat => {
-            console.log(seat);
             const tableRow = document.createElement('tr');
 
             const rowCell = document.createElement('td');
@@ -105,7 +105,9 @@ function displayResponse(data) {
 
             // Attach a click event listener to the table row
             tableRow.addEventListener('click', () => {
-                handleClick(seat.seatId, show.showId, userId);
+                console.log('Seat Id: ',seat.seatId,' Show Id: ',show.showId,' User Id',userId);
+                const seatIds = [seat.seatId];
+                book(seatIds, show.showId, userId);
             });
 
 
@@ -117,4 +119,56 @@ function displayResponse(data) {
 
         responseContainer.appendChild(show_seats);
    });
+}
+
+function book(seatIds, showId,userId) {
+     const requestData = {
+         userId : userId,
+         seatIds : seatIds,
+         showId : showId
+     }
+
+     fetch("http://localhost:8080/book", {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(requestData)
+     })
+         .then(response => response.json())
+         .then(data => {
+             console.log('SUCCESS',data);
+             displayPopup(data);
+         })
+         .catch(error => {
+             console.error('FAILURE');
+         });
+}
+
+function displayPopup(data) {
+    // Create a div element for the popup
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+
+    // Set the content of the popup
+    popup.innerHTML = `
+    <div class="popup-content">
+      <h2>${data.movieName}</h2>
+      <img src="${data.movieImageUrl}" alt="">
+      <p>Theater: ${data.theaterName}</p>
+      <p>Screen: ${data.screenNumber}</p>
+      <p>Located at: ${data.locatedAt}</p>
+      <p>Booking ID: ${data.bookingId}</p>
+      <p>Amount: ${data.amount}</p>
+      <p>Booked At: ${data.bookedAt}</p>
+    </div>
+  `;
+
+    // Append the popup to the body
+    document.body.appendChild(popup);
+
+    // Close the popup when clicked anywhere outside it
+    popup.addEventListener('click', (event) => {
+            popup.remove();
+    });
 }

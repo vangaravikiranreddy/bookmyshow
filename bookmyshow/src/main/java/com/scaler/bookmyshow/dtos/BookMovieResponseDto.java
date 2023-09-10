@@ -10,6 +10,7 @@ import java.util.Date;
 @Setter
 public class BookMovieResponseDto {
     private ResponseStatus responseStatus;
+    private String movieImageUrl;
     private Long bookingId;
     private Date bookedAt;
     private String movieName;
